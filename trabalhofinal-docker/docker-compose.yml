@@ -1,0 +1,99 @@
+version: "3.8"
+
+services:
+
+  backend:
+    container_name: loja_backend
+    image: loja_backend_do_jhon:1.0
+    env_file: ./backend/.env
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_started
+      db_test:
+        condition: service_started
+    ports:
+      - ${PORT_BACK}:${PORT_BACK}
+    volumes:
+      - ./backend:/usr/src/app
+    networks:
+      - rede_loja_virtual
+  
+  frontend:
+    container_name: loja_frontend
+    image: loja_frontend_do_jhon:1.0
+    env_file: ./frontend/.env
+    restart: on-failure
+    depends_on:
+      backend:
+        condition: service_started
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - ${PORT_FRONT}:80
+    volumes:
+      - ./frontend:/usr/src/app
+    networks:
+      - rede_loja_virtual
+
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: loja_db
+    restart: always
+    ports:
+      - ${PORT_MYSQL}:3306
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_db:/var/lib/mysql
+      - mysql_db_config:/etc/mysql
+    networks:
+      - rede_loja_virtual
+
+  db_test:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: loja_db_test
+    restart: always
+    ports:
+      - ${PORT_MYSQL_TEST}:3306
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE_TEST}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD_TEST}
+    volumes:
+      - mysql_db_test:/var/lib/mysql
+      - mysql_db_config_test:/etc/mysql
+    networks:
+      - rede_loja_virtual
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: loja_phpmyadmin
+    restart: always
+    ports:
+      - ${PORT_PMA}:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    depends_on:
+      - db
+      - db_test
+    networks:
+      - rede_loja_virtual
+
+volumes:
+  mysql_db:
+  mysql_db_config:
+  mysql_db_test:
+  mysql_db_config_test:
+
+networks:
+  rede_loja_virtual:
+    driver: bridge

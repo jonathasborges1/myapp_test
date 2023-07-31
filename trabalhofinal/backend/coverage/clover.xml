@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1690828166336" clover="3.2.0">
+  <project timestamp="1690828166336" name="All files">
+    <metrics statements="26" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="4" elements="39" coveredelements="22" complexity="0" loc="26" ncloc="26" packages="1" files="1" classes="1"/>
+    <file name="usuario.service.ts" path="C:\Users\jonathas\Documents\webacademy\WACAD016\trabalhofinal\backend\src\resources\usuario\usuario.service.ts">
+      <metrics statements="26" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="4"/>
+      <line num="1" count="2" type="stmt"/>
+      <line num="2" count="2" type="stmt"/>
+      <line num="9" count="2" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+      <line num="23" count="2" type="stmt"/>
+      <line num="25" count="1" type="stmt"/>
+      <line num="26" count="1" type="stmt"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="29" count="1" type="stmt"/>
+      <line num="33" count="1" type="stmt"/>
+      <line num="34" count="1" type="stmt"/>
+      <line num="35" count="1" type="stmt"/>
+      <line num="38" count="2" type="stmt"/>
+      <line num="41" count="0" type="stmt"/>
+      <line num="42" count="0" type="stmt"/>
+      <line num="43" count="0" type="stmt"/>
+      <line num="46" count="2" type="stmt"/>
+      <line num="48" count="1" type="stmt"/>
+      <line num="49" count="1" type="stmt"/>
+      <line num="62" count="2" type="stmt"/>
+      <line num="64" count="0" type="stmt"/>
+      <line num="65" count="0" type="stmt"/>
+      <line num="78" count="2" type="stmt"/>
+      <line num="79" count="0" type="stmt"/>
+    </file>
+  </project>
+</coverage>

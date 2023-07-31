@@ -1,0 +1,1 @@
+yarn test produto.service.test.ts --coverage
